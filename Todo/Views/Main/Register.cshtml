@@ -4,19 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel panel-default" ng-controller="RegisterCtrl">
-    <div class="panel-heading">Register</div>
-    <div class="panel-body">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Username" ng-model="user.login">
-        </div>
+<div class="panel panel-default" ng-controller="RegisterController">
+    <form name="registerForm">
+        <div class="panel-heading">Register</div>
 
-        <div class="input-group">
-            <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
-        </div>
+        <div class="panel-body">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Name" ng-model="user.Name">
+            </div>
 
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" ng-click="register()">Register</button>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Username" ng-model="user.Login">
+            </div>
+
+            <div class="input-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="user.Password">
+            </div>
+
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" ng-click="register()">Register</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

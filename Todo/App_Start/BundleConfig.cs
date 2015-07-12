@@ -22,8 +22,11 @@ namespace Todo
                 "~/Scripts/vendor/angular-route.min.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/app").Include(
-                "~/Scripts/app/app.js", 
-                "~/Scripts/app/controllers.js"));
+                "~/Scripts/app/app.js",
+                "~/Scripts/app/factories/*.js",
+                "~/Scripts/app/controllers/*.js"
+                ));
+
 
             #if DEBUG
                     BundleTable.EnableOptimizations = false;

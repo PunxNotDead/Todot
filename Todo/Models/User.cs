@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Todo.Models
 {
     using System;
@@ -15,9 +17,14 @@ namespace Todo.Models
     public partial class User
     {
         public long ID { get; set; }
+        [Required, MaxLength(64)]
         public string Name { get; set; }
         public Nullable<System.DateTime> RegistrationDate { get; set; }
+        [Required, MaxLength(64)]
         public string Login { get; set; }
+        [Required, MaxLength(128)]
         public string PasswordHash { get; set; }
+        [MaxLength(32)]
+        public string Password { get; set; }
     }
 }

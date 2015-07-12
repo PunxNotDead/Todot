@@ -1,4 +1,1 @@
-﻿var todoApp = angular.module('todoApp', [
-  'ngRoute',
-  'todoControllers'
-]);
+﻿var app = angular.module('TodoApp', ['ngRoute']);
