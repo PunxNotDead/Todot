@@ -4,26 +4,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel panel-default" ng-controller="RegisterController">
-    <form name="registerForm">
-        <div class="panel-heading">Register</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default" ng-controller="RegisterController">
+            <form name="registerForm">
+                <fieldset>
+                    <div class="panel-heading">Register</div>
 
-        <div class="panel-body">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Name" ng-model="user.Name">
-            </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name" ng-model="user.Name">
+                        </div>
 
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Username" ng-model="user.Login">
-            </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" ng-model="user.Login">
+                        </div>
 
-            <div class="input-group">
-                <input type="password" class="form-control" placeholder="Password" ng-model="user.Password">
-            </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" ng-model="user.Password">
+                        </div>
 
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" ng-click="register()">Register</button>
-            </div>
+                        <div class="form-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="register()">Register</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-    </form>
+    </div>
 </div>

@@ -6,20 +6,25 @@ using System.Web;
 using System.Web.Mvc;
 using Todo.Models;
 using System.Configuration;
+using Ninject;
+using Todo.Interfaces;
 
 namespace Todo.Controllers
 {
     public class MainController : Controller
     {
+        protected IUserRepository userRepository;
+
         private UserDbContext db = new UserDbContext();
 
-        // GET: Main
+        public MainController(IUserRepository repository) { 
+            userRepository = repository;
+        }
+
+        // GET: /Main/Index
         public ActionResult Index()
         {
-            var l2 = db.Users.ToList();
-
-            return View(l2);
-            
+            return View(userRepository.Users);
         }
 
         // GET: /Account/Register

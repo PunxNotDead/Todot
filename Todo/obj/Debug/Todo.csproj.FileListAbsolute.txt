@@ -27,3 +27,10 @@ E:\C#\Todo\Todo\bin\EntityFramework.SqlServer.dll
 E:\C#\Todo\Todo\bin\EntityFramework.xml
 E:\C#\Todo\Todo\bin\EntityFramework.SqlServer.xml
 E:\C#\Todo\Todo\obj\Debug\Todo.csprojResolveAssemblyReference.cache
+E:\C#\Todo\Todo\bin\Ninject.dll
+E:\C#\Todo\Todo\bin\Ninject.Web.Common.dll
+E:\C#\Todo\Todo\bin\Ninject.Web.Mvc.dll
+E:\C#\Todo\Todo\bin\WebActivatorEx.dll
+E:\C#\Todo\Todo\bin\Ninject.xml
+E:\C#\Todo\Todo\bin\Ninject.Web.Common.xml
+E:\C#\Todo\Todo\bin\Ninject.Web.Mvc.xml

@@ -6,26 +6,29 @@
 
 @model IEnumerable<Todo.Models.User> 
 
-<h2>Index</h2>
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-xs-3">
+                @Html.DisplayFor(modelItem => item.Name)
+            </div>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID })  |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-}
+            <div class="col-xs-3">
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </div>
+
+            <div class="col-xs-3">
+                @Html.DisplayFor(modelItem => item.Login)
+            </div>
+
+            <div class="col-xs-3">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID })  |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </div>
+        </div>
+    }
+</div>
 
 @Html.ActionLink("Register Link", "Register", "Main")
