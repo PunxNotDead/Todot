@@ -1,17 +1,17 @@
 ﻿
 angular.module('TodoApp').factory('UserFactory', function($http) {
-    var url = '/User'
+	var url = '/User'
 
-    function get(id) {
+	function get(id) {
 
-    };
+	};
 
-    function post(data) {
-        return $http.post(url + '/New', data);
-    }
+	function post(data) {
+		return $http.post(url + '/New', data);
+	}
 
-    return {
-        get: get,
-        post: post
-    };
+	return {
+		get: get,
+		post: post
+	};
 });

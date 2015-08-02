@@ -11,20 +11,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class User
-    {
-        public long ID { get; set; }
-        [Required, MaxLength(64)]
-        public string Name { get; set; }
-        public Nullable<System.DateTime> RegistrationDate { get; set; }
-        [Required, MaxLength(64)]
-        public string Login { get; set; }
-        [Required, MaxLength(128)]
-        public string PasswordHash { get; set; }
-        [MaxLength(32)]
-        public string Password { get; set; }
-    }
+	using System;
+	using System.Collections.Generic;
+	
+	public partial class User
+	{
+		public long ID { get; set; }
+		
+		[Required(ErrorMessage = "Empty Name"), MaxLength(64)]
+		public string Name { get; set; }
+
+		public Nullable<System.DateTime> RegistrationDate { get; set; }
+		
+		[Required(ErrorMessage = "Empty Login"), MaxLength(64)]
+		public string Login { get; set; }
+		
+		[MaxLength(128)]
+		public string PasswordHash { get; set; }
+		
+		[Required(ErrorMessage = "Empty Password"), MaxLength(64)]
+		public string Password { get; set; }
+	}
 }

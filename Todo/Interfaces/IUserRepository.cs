@@ -3,8 +3,9 @@ using Todo.Models;
 
 namespace Todo.Interfaces
 {
-    public interface IUserRepository
-    {
-        IEnumerable<User> Users { get; }
-    }
+	public interface IUserRepository
+	{
+		IEnumerable<User> Users { get; }
+		bool Save(User user);
+	}
 }
