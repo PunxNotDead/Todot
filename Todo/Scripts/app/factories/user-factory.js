@@ -6,12 +6,17 @@ angular.module('TodoApp').factory('UserFactory', function($http) {
 
 	};
 
-	function post(data) {
+	function create(data) {
 		return $http.post(url + '/New', data);
+	}
+
+	function login(data) {
+		return $http.post(url + '/Login', data);
 	}
 
 	return {
 		get: get,
-		post: post
+		create: create,
+		login: login
 	};
 });
