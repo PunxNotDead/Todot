@@ -5,10 +5,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="64" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
     <Property Name="RegistrationDate" Type="datetime" />
-    <Property Name="Login" Type="nchar" MaxLength="64" Nullable="false" />
-    <Property Name="PasswordHash" Type="nchar" MaxLength="64" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <EntityContainer Name="TodoModelsStoreContainer">
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />

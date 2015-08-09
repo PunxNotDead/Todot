@@ -11,7 +11,7 @@ using Todo.Models.Forms;
 
 namespace Todo.Controllers
 {
-	public class UserController : JsonController
+	public class UserController : Controller
 	{
 		private IUserRepository userRepository = null;
 
@@ -28,10 +28,8 @@ namespace Todo.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult New()
+		public JsonResult New(UserRegistrationForm userRegistrationForm)
 		{
-			var userRegistrationForm = ParseJson<UserRegistrationForm>();
-
 			if (userRegistrationForm == null)
 			{ 
 				return Json(JsonHelper.CreateErrorResponse("Bad Request"));
@@ -40,10 +38,11 @@ namespace Todo.Controllers
 			if (TryValidateModel(userRegistrationForm))
 			{
 				var errors = new string[] { };
-				var user = new User();
-				user.Login = userRegistrationForm.Login;
-				user.Name = userRegistrationForm.Name;
-				user.PasswordHash = Crypto.HashPassword(userRegistrationForm.Password);
+				var user = new User() {
+					Login = userRegistrationForm.Login.Trim(),
+					Name = userRegistrationForm.Name.Trim(),
+					PasswordHash = PasswordHelper.CreateHash(userRegistrationForm.Password)
+				};
 
 				try
 				{
@@ -85,7 +84,6 @@ namespace Todo.Controllers
 		[HttpPost]
 		public JsonResult Login(LoginForm loginForm)
 		{
-			//var LoginForm = ParseJson<LoginForm>();
 			if (loginForm == null)
 			{ 
 				return Json(JsonHelper.CreateErrorResponse("Bad Request"));
@@ -97,24 +95,12 @@ namespace Todo.Controllers
 
 				try
 				{
-					var user = userRepository.Users.FirstOrDefault<User>(record => record.Login == loginForm.Login && record.PasswordHash == Crypto.HashPassword(loginForm.Password));
-
-					if (user == null)
+					var user = userRepository.Users.FirstOrDefault(b => b.Login == loginForm.Login);
+					
+					if (user == null || !PasswordHelper.ValidatePassword(loginForm.Password, user.PasswordHash))
 					{
 						errors = new string[] { "Login or password is incorrect" };
 					}
-					else
-					{
-						return Json(new { errors = Enumerable.Empty<string>().ToArray() });
-					}
-				}
-				catch (DbEntityValidationException ex) //db validation errors
-				{
-					errors = ex.EntityValidationErrors.SelectMany(v => v.ValidationErrors).Select(e => e.ErrorMessage).ToArray<string>();
-				}
-				catch (DbUpdateException ex)
-				{
-					errors = new string[] { "Login already registered" };
 				}
 				catch (Exception ex)
 				{
