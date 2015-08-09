@@ -1,34 +1,40 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model IEnumerable<Todo.Models.User> 
+@model IEnumerable<Todo.Models.User>
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-xs-3">
-                @Html.DisplayFor(modelItem => item.Name)
-            </div>
+<div class="container" ng-controller="ListController">
+	@if (@Request.IsAuthenticated)
+	{
+		<button class="btn btn-default" ng-click="logout()">
+			Logout
+		</button>
+	}
 
-            <div class="col-xs-3">
-                @Html.DisplayFor(modelItem => item.RegistrationDate)
-            </div>
+	@foreach (var item in Model)
+	{
+		<div class="row">
+			<div class="col-xs-3">
+				@Html.DisplayFor(modelItem => item.Name)
+			</div>
 
-            <div class="col-xs-3">
-                @Html.DisplayFor(modelItem => item.Login)
-            </div>
+			<div class="col-xs-3">
+				@Html.DisplayFor(modelItem => item.RegistrationDate)
+			</div>
 
-            <div class="col-xs-3">
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID })  |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </div>
-        </div>
-    }
+			<div class="col-xs-3">
+				@Html.DisplayFor(modelItem => item.Login)
+			</div>
+
+			<div class="col-xs-3">
+				@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+				@Html.ActionLink("Details", "Details", new { id = item.ID })  |
+				@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+			</div>
+		</div>
+	}
 </div>
 
 @Html.ActionLink("Register Link", "Register", "Main")

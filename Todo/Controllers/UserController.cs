@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using Todo.Models;
-using Todo.Interfaces;
 using Todo.Helpers;
-using System.Data.Entity.Infrastructure;
+using Todo.Interfaces;
+using Todo.Models;
 using Todo.Models.Forms;
 
 namespace Todo.Controllers
@@ -14,10 +14,12 @@ namespace Todo.Controllers
 	public class UserController : Controller
 	{
 		private IUserRepository userRepository = null;
+		private IAuthProvider authProvider = null;
 
-		public UserController(IUserRepository repository)
+		public UserController(IUserRepository repository, IAuthProvider provider)
 		{ 
 			userRepository = repository;
+			authProvider = provider;
 		}
 
 		// GET: /Account/Register
@@ -95,9 +97,7 @@ namespace Todo.Controllers
 
 				try
 				{
-					var user = userRepository.Users.FirstOrDefault(b => b.Login == loginForm.Login);
-					
-					if (user == null || !PasswordHelper.ValidatePassword(loginForm.Password, user.PasswordHash))
+					if (!authProvider.Authenticate(loginForm.Login, loginForm.Password))
 					{
 						errors = new string[] { "Login or password is incorrect" };
 					}
@@ -114,6 +114,14 @@ namespace Todo.Controllers
 				var allErrors = ModelState.Values.SelectMany(v => v.Errors).Select(x => x.ErrorMessage);
 				return Json(JsonHelper.CreateErrorResponse(allErrors));
 			}
+		}
+
+		// GET: Logout
+		[HttpPost]
+		public JsonResult Logout()
+		{
+			authProvider.Logout();
+			return Json(JsonHelper.CreateErrorResponse(new string[] { }));
 		}
 	}
 }

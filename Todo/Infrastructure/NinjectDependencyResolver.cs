@@ -31,6 +31,7 @@ namespace Todo.Infrastructure
 		private void AddBindings()
 		{
 			kernel.Bind<IUserRepository>().To<UserRepository>();
+			kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
 		}
 	}
 }

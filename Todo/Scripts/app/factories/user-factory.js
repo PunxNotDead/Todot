@@ -1,5 +1,4 @@
-﻿
-angular.module('TodoApp').factory('UserFactory', function($http) {
+﻿angular.module('TodoApp').factory('UserFactory', function($http) {
 	var url = '/User'
 
 	function get(id) {
@@ -14,9 +13,14 @@ angular.module('TodoApp').factory('UserFactory', function($http) {
 		return $http.post(url + '/Login', data);
 	}
 
+	function logout() {
+		return $http.post(url + '/Logout');
+	}
+
 	return {
 		get: get,
 		create: create,
-		login: login
+		login: login,
+		logout: logout
 	};
 });
